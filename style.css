@@ -1,0 +1,47 @@
+
+.body-color {
+    background-color: rgb(50, 207, 173);
+}
+
+
+.container-game {
+    position: absolute !important;
+    top:10%;
+    left: 31%;
+    border: 2px solid;
+    width: 500px !important;
+    max-width: 500px !important;
+    height: 500px !important;
+    max-height: 500px !important;
+    overflow: hidden;
+}
+
+.op {
+    border: 1px solid;
+    height: 166px !important;
+    background-color: #FFF;
+}
+
+.op:hover {
+    background-color: rgb(182, 182, 182);
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.scoreboard {
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    background-color: #FFF;
+    position: absolute !important;
+    left:5%;
+    top: 10%;
+    width: 200px;
+    height: 200px;
+}
+
+.played {
+    border: 1px solid rgb(32, 32, 32);
+    border-radius: 5px;
+    width: 350px;
+    margin: auto;
+}

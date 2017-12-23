@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <script src="config.js"></script>
+        <title>Game</title>
+    </head>
+    <body class="body-color">
+        <div class="played mt-2">
+            <div class="row p-2">
+                <h4 class="col text-center">Jogada do: <span id="playerNow"></span></h4>
+            </div>
+        </div>
+
+        <div class="container container-game">
+            <div class="row">
+                <div id="op1" class="op col" onclick="setOption(this)"></div>
+                <div id="op2" class="op col" onclick="setOption(this)"></div>
+                <div id="op3" class="op col" onclick="setOption(this)"></div>
+            </div>
+            <div class="row">
+                <div id="op4" class="op col" onclick="setOption(this)"></div>
+                <div id="op5" class="op col" onclick="setOption(this)"></div>
+                <div id="op6" class="op col" onclick="setOption(this)"></div>
+            </div>
+            <div class="row">
+                <div id="op7" class="op col" onclick="setOption(this)"></div>
+                <div id="op8" class="op col" onclick="setOption(this)"></div>
+                <div id="op9" class="op col" onclick="setOption(this)"></div>
+            </div>
+        </div>
+
+        <div class="scoreboard">
+                <div class="row">
+                    <h6 class="col-12 text-center font-weight-bold">Score</h6>
+                    <span class="col-12 m-3 font-weight-bold">Jogador 1: <span id="player1">0</span> </span>
+                    <span class="col-12 m-3 font-weight-bold">Jogador 2: <span id="player2">0</span> </span>
+                    <span class="col-12 m-3 font-weight-bold">Empate: <span id="tie">0</span> </span>
+                </div>
+        </div>
+    </body>
+</html>
