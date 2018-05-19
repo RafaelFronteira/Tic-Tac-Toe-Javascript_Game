@@ -1,6 +1,6 @@
 
 .body-color {
-    background-color: rgb(50, 207, 173);
+    background: linear-gradient(to left bottom, rgb(74, 214, 184), rgb(14, 255, 175));
 }
 
 
@@ -33,10 +33,11 @@
     border-radius: 5px;
     background-color: #FFF;
     position: absolute !important;
-    left:5%;
-    top: 10%;
+    left:13%;
+    top: 25%;
+    display: none;
     width: 200px;
-    height: 200px;
+    height: auto !important;
 }
 
 .played {

@@ -1,53 +1,60 @@
-const BALLIMAGE = "url('./imgs/ball.png')"
-const XIMAGE = "url('./imgs/x.png')"
-const BALL = 'BALL'
-const X = 'X'
+const BALLIMAGE = "url('./imgs/ball.png')";
+const XIMAGE = "url('./imgs/x.png')";
+const BALL = 'BALL';
+const X = 'X';
 let player = Math.floor(Math.random() * 2) + 1;
-let countP1Win = 0;
-let countP2Win = 0;
+let countP1Win = 0; 
+let countP2Win = 0; 
 let countTie = 0;
+let canPlay = true;
 
 window.onload = function() {
-    const player1 = document.getElementById("player1")
-    const player2 = document.getElementById("player2")
-    const tie = document.getElementById("tie")
-    const playerNow = document.getElementById("playerNow")
-    if(player === 1) return playerNow.textContent = "Jogador 1(X)"
-    if(player === 2) return playerNow.textContent = "Jogador 2(O)"
+    const player1 = document.getElementById("player1");
+    const player2 = document.getElementById("player2");
+    const tie = document.getElementById("tie");
+    const playerNow = document.getElementById("playerNow");
+    const scoreboard = document.getElementById("scoreboard");
+    if(player === 1) return playerNow.textContent = "Jogador 1(X)";
+    if(player === 2) return playerNow.textContent = "Jogador 2(O)";
 }
 
 let table = {
     op1: {played: false, type: null}, op2: {played: false, type: null}, op3: {played: false, type: null},
     op4: {played: false, type: null}, op5: {played: false, type: null}, op6: {played: false, type: null}, 
     op7: {played: false, type: null}, op8: {played: false, type: null}, op9: {played: false, type: null}
-}
+};
 
 function setOption(op) {
-    const cellOP = op.id
+    const cellOP = op.id;
 
-    if(player === 1) {
+    if(player === 1 && canPlay) {
         if(_setImage(cellOP, X)){
-            if(checkWhoWon()) {
+            if(_checkWhoWon()) {
                 countP1Win++;
                 player1.textContent = countP1Win;
                 return false;
             }
             _setPlayer();
-            playerNow.textContent = "Jogador 2(O)"
+            playerNow.textContent = "Jogador 2(O)";
         }    
     }
 
-    if(player === 2) {
+    if(player === 2 && canPlay) {
         if(_setImage(cellOP, BALL)) {
-            if(checkWhoWon()) {
+            if(_checkWhoWon()) {
                 countP2Win++;
                 player2.textContent = countP2Win;
                 return false;
             }
             _setPlayer();
-            playerNow.textContent = "Jogador 1(X)"
+            playerNow.textContent = "Jogador 1(X)";
         }    
     } 
+}
+
+function closeModal() {
+    _reset();
+    scoreboard.style.display = "none";
 }
 
 function _setTable(op, type) {
@@ -60,17 +67,20 @@ function _setTable(op, type) {
 function _setImage(cellOP, type) {
     const cell = document.getElementById(cellOP)
     if(!table[cellOP].played) {
-        _setTable(cellOP, type)
-        if(type === BALL) cell.style.backgroundImage = BALLIMAGE
-        if(type === X) cell.style.backgroundImage = XIMAGE
+        _setTable(cellOP, type);
+        cell.style.backgroundRepeat = "no-repeat";
+        cell.style.backgroundPosition = "center";
+        cell.style.backgroundSize = "contain";
+        if(type === BALL) cell.style.backgroundImage = BALLIMAGE;
+        if(type === X) cell.style.backgroundImage = XIMAGE;
         return true;
     } 
     return false;
 }
 
 function _setPlayer() {
-    if(player === 1) return player = 2
-    if(player === 2) return player = 1
+    if(player === 1) return player = 2;
+    if(player === 2) return player = 1;
 }
 
 function _hasPLayerWon() {
@@ -107,24 +117,26 @@ function _checkMove() {
 function _hasTie() {
     let num = 0;
     for(let i = 1; i < 10; i++) {
-        if(table["op"+i].played){
-            num++
+        if(table["op"+i].played) {
+            num++;
         }
     }
     if(num === 9) return true;
 }
 
-function checkWhoWon() {
+function _checkWhoWon() {
     if(_hasTie()) {
-        countTie++
-        tie.textContent = countTie
-        _reset()
-        return true
+        countTie++;
+        tie.textContent = countTie;
+        scoreboard.style.display = "inline";
+        canPlay = false;
+        return true;
     }
 
     if(_hasPLayerWon()) {
-        _reset()
-        return true
+        scoreboard.style.display = "inline";
+        canPlay = false;
+        return true;
     }
 }
 
@@ -133,10 +145,11 @@ function _reset() {
         op1: {played: false, type: null}, op2: {played: false, type: null}, op3: {played: false, type: null},
         op4: {played: false, type: null}, op5: {played: false, type: null}, op6: {played: false, type: null}, 
         op7: {played: false, type: null}, op8: {played: false, type: null}, op9: {played: false, type: null}
-    }
+    };
 
     for(let i = 1; i < 10; i++) {
-        const cell = document.getElementById("op"+i)
-        cell.style.backgroundImage = "none"
+        const cell = document.getElementById("op"+i);
+        cell.style.backgroundImage = "none";
     }
+    canPlay = true;
 }
