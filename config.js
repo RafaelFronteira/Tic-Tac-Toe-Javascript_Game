@@ -125,7 +125,7 @@ function _checkMove() {
 function _hasTie() {
     let num = 0;
     for(let i = 1; i < 10; i++) {
-        if(table["op"+i].played) {
+        if(table["op"+i].played) { 
             num++;
         }
     }
