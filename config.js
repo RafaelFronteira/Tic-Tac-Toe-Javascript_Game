@@ -27,6 +27,14 @@ let table = {
 function setOption(op) {
     const cellOP = op.id;
 
+    if (_hasTie()) {
+        countTie++;
+        tie.textContent = countTie;
+        scoreboard.style.display = "inline";
+        canPlay = false;
+        return true;
+    }
+
     if(player === 1 && canPlay) {
         if(_setImage(cellOP, X)){
             if(_checkWhoWon()) {
@@ -117,22 +125,14 @@ function _checkMove() {
 function _hasTie() {
     let num = 0;
     for(let i = 1; i < 10; i++) {
-        if(table["op"+i].played) {
+        if(table["op"+i].played) { 
             num++;
         }
     }
-    if(num === 9) return true;
+    if(num === 8) return true;
 }
 
 function _checkWhoWon() {
-    if(_hasTie()) {
-        countTie++;
-        tie.textContent = countTie;
-        scoreboard.style.display = "inline";
-        canPlay = false;
-        return true;
-    }
-
     if(_hasPLayerWon()) {
         scoreboard.style.display = "inline";
         canPlay = false;
